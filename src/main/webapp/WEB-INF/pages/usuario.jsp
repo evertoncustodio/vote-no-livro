@@ -11,5 +11,5 @@
 		<button type="submit" class="btn btn-default">Confirmar</button>
 	</form>
 	
-	<script src="<c:url value='/js/usuario.js' />"></script>
+	<script src="${pageContext.request.contextPath}/js/usuario.js"></script>
 </div>

@@ -4,10 +4,11 @@
 
 <html>
 	<head>
-		<script src="<c:url value='/js/jquery-1.11.1.min.js' />"></script>
-		<link rel="stylesheet" type="text/css" href="<c:url value='/css/bootstrap.min.css' />" />
-		<script src="<c:url value='/js/bootstrap.js' />"></script>
-		<link rel="stylesheet" type="text/css" href="<c:url value='/css/default.css' />" />
+		<script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
+		<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/default.css" />
+		<script src="${pageContext.request.contextPath}/js/default.js"></script>
 	</head>
 
 	<body>

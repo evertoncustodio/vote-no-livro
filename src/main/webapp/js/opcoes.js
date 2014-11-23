@@ -1,5 +1,5 @@
 function votar(idLivro) {
-	$(".votar").unbind("click");
+	$(".votar").attr("disabled", true);
 	
 	$.ajax({
 		  url: "votar?id=" + idLivro,

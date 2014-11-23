@@ -12,5 +12,5 @@
 		
 	</div>
 	
-	<script src="<c:url value='/js/resultado.js' />"></script>
+	<script src="${pageContext.request.contextPath}/js/resultado.js"></script>
 </div>

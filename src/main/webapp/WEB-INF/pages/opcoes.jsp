@@ -12,5 +12,5 @@
 		</div>
 	</div>
 	
-	<script src="<c:url value='/js/opcoes.js' />"></script>
+	<script src="${pageContext.request.contextPath}/js/opcoes.js"></script>
 </div>
