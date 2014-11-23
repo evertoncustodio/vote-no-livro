@@ -1,9 +1,7 @@
 $("#formUsuario").submit(function(event){
 	event.preventDefault();
 	
-	$("#formUsuario").submit(function(event){
-		return false;
-	});
+	$("button").attr("disabled", true);
 	
 	$.ajax({
 		  type: "POST",
