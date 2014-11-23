@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+.centralizado {
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:20px;
+	width:80%;
+}
+
+.painelGeral {
+	width: 800px;
+}
+
+.panel-title {
+	text-align:center;
+}
+
+.opcao {
+	float: left;
+	position: relative;
+	width: 50%;
+	text-align: center;
+	border-radius: 11px;
+	padding: 30px; 
+}
+
+.selecionado {
+	background-color: #eee;
+}
