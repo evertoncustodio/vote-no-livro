@@ -11,3 +11,7 @@
 *.jar
 *.war
 *.ear
+
+#openshift
+/deployments
+/.openshift
