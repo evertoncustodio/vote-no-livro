@@ -6,7 +6,6 @@ import br.eti.evertoncustodio.votenolivro.model.Livro;
 
 public interface LivroDAO {
 
-	void adicionar(Livro livro);
-	List<Livro> getLista();
+	List<Livro> todos();
 	Livro getLivro(Long id);
 }

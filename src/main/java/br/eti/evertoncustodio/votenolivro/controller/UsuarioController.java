@@ -8,55 +8,37 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.eti.evertoncustodio.votenolivro.model.Ranking;
 import br.eti.evertoncustodio.votenolivro.model.Usuario;
-import br.eti.evertoncustodio.votenolivro.model.VotosUsuario;
-import br.eti.evertoncustodio.votenolivro.model.dao.UsuarioDAO;
-import br.eti.evertoncustodio.votenolivro.model.dao.VotosUsuarioDAO;
-import br.eti.evertoncustodio.votenolivro.model.service.RankingService;
+import br.eti.evertoncustodio.votenolivro.model.Votacao;
+import br.eti.evertoncustodio.votenolivro.model.dao.VotacaoDAO;
+import br.eti.evertoncustodio.votenolivro.model.service.ICriadorDeRanking;
 
 @Controller
 public class UsuarioController {
-
-	@Autowired
-	private RankingService rankingService;
 	
 	@Autowired
-	private UsuarioDAO usuarioDAO;
-	
+	private VotacaoDAO votacoes;
 	@Autowired
-	private VotosUsuarioDAO votosUsuarioDAO;
+	private ICriadorDeRanking criadorDeRanking;
 	
 	@Transactional
 	@RequestMapping("/confirmar")
 	public String confirmar(Model model, HttpSession session, Usuario usuario) {
-		VotosUsuario votosUsuario = (VotosUsuario) session.getAttribute("votosUsuario");
+		Votacao votacao = (Votacao) session.getAttribute("votacao");
+		votacao.setUsuario(usuario);
+		votacoes.gravar(votacao);
 		
-		if(votosUsuario == null) {
-			throw new NullPointerException("variável votosUsuario não foi gravada na sessão");
-		}
-		
-		votosUsuario.setUsuario(usuario);
-		
-		usuarioDAO.gravar(usuario);
-		votosUsuarioDAO.gravar(votosUsuario);
-		
-		Ranking ranking = rankingService.getRankingGeral();
-		model.addAttribute("ranking", ranking);
-		model.addAttribute("usuario", usuario);
+		model.addAttribute("rankingGeral", criadorDeRanking.geral());
+		model.addAttribute("rankingUsuario", criadorDeRanking.por(usuario));
 		
 		return "resultado";
 	}
-	
-	public void setRankingService(RankingService rankingService) {
-		this.rankingService = rankingService;
+
+	public void setVotacoes(VotacaoDAO votacoes) {
+		this.votacoes = votacoes;
 	}
 
-	public void setUsuarioDAO(UsuarioDAO usuarioDAO) {
-		this.usuarioDAO = usuarioDAO;
-	}
-
-	public void setVotosUsuarioDAO(VotosUsuarioDAO votosUsuarioDAO) {
-		this.votosUsuarioDAO = votosUsuarioDAO;
+	public void setCriadorDeRanking(ICriadorDeRanking criadorDeRanking) {
+		this.criadorDeRanking = criadorDeRanking;
 	}
 }

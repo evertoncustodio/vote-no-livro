@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -20,17 +19,13 @@ class LivroDAOImpl implements LivroDAO {
 		this.manager = manager;
 	}
 	
-	public void adicionar(Livro livro) {
-		manager.persist(livro);
+	@Override
+	public List<Livro> todos() {
+		return manager.createQuery("select l from Livro l", Livro.class).getResultList();
 	}
 
-	public List<Livro> getLista() {
-		TypedQuery<Livro> query = manager.createQuery("select l from Livro l", Livro.class);
-		return query.getResultList();
-	}
-	
+	@Override
 	public Livro getLivro(Long id) {
 		return manager.find(Livro.class, id);
 	}
-
 }

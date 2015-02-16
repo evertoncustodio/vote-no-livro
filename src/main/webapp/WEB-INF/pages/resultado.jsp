@@ -3,8 +3,8 @@
 
 <div class="resultado">
 
-	<v:tabela titulo="Resultado Geral" scores="${ranking.scores}" />
-	<v:tabela titulo="Resultado do usuário ${usuario.nome}" scores="${votosUsuario.ranking.scores}" />
+	<v:tabela titulo="Resultado Geral" scores="${rankingGeral.scores}" />
+	<v:tabela titulo="Resultado do usuário ${usuario.nome}" scores="${rankingUsuario.scores}" />
 	
 	<a class="btn btn-default" href="${pageContext.request.contextPath}">Nova Votação</a>
 	
