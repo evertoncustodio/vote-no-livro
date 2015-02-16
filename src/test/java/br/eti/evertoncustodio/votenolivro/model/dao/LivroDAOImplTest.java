@@ -41,20 +41,16 @@ public class LivroDAOImplTest {
 	public void tearDown() throws Exception {
 		manager.getTransaction().rollback();
 	}
-
+	
 	@Test
-	public void deveIncluirUmLivro() {	
-		Livro livro = new Livro();
-		livro.setTitulo("Harry Potter");
-		
-		livroDAO.adicionar(livro);
-		assertEquals(livro, manager.find(Livro.class, livro.getId()));
+	public void deve_listar_livros_cadastrados() {
+		incluir3Livros();
+		assertEquals(3, livroDAO.todos().size());
 	}
 	
 	@Test
-	public void deveListarOsLivrosCadastrados() {
-		incluir3Livros();
-		assertEquals(3, livroDAO.getLista().size());
+	public void deve_retornar_vazio_quando_nao_houver() {
+		assertTrue(livroDAO.todos().isEmpty());
 	}
 
 	private void incluir3Livros() {
@@ -71,10 +67,4 @@ public class LivroDAOImplTest {
 		manager.persist(l2);
 		manager.persist(l3);
 	}
-	
-	@Test
-	public void deveRetornarListaVaziaQuandoNaoHouverLivros() {
-		assertTrue(livroDAO.getLista().isEmpty());
-	}
-
 }

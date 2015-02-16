@@ -16,6 +16,11 @@ public class Ranking {
 		}
 		
 		this.posicoes.addAll(posicoes);
+		ordenar();
+	}
+
+	private void ordenar() {
+		Collections.sort(this.posicoes);
 	}
 	
 	private Ranking() {

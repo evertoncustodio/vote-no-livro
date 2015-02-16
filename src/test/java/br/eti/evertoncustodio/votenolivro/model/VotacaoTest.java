@@ -5,86 +5,72 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
-import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 public class VotacaoTest {
 
 	private Votacao votacao;
-	private List<Opcao> opcoes;	
-
+	private Livro l1;
+	private Livro l2;
+	private Livro l3;
+	
+	private Voto v1;
+	private Voto v2;
+	
 	@Before
-	public void setUp() throws Exception {
-		opcoes = Mockito.mock(List.class);
-		votacao = new Votacao(opcoes);
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	@Test(expected=NullPointerException.class)
-	public void naoDevePermitirCriarVotacaoSemOpcoes() {
-		new Votacao(null);
-	}
-	
-	@Test
-	public void devePossuirProximoSeProximaPosicaoEhMenorQueONumOpcoes() {
-		Mockito.when(opcoes.size()).thenReturn(10);
-		assertTrue(votacao.temProximo());
-	}
-	
-	@Test
-	public void naoDevePossuirProximoSeProximaPosicaoEhIgualNumOpcoes() {
-		Mockito.when(opcoes.size()).thenReturn(0);
-		assertFalse(votacao.temProximo());
-	}
-	
-	@Test(expected=IllegalStateException.class)
-	public void naoDeveRetornarProximoSeAPosicaoForMaiorQueAsOpcoes() {
-		Mockito.when(opcoes.size()).thenReturn(0);
-		votacao.proximo();
-	}
-	
-	@Test
-	public void deveRetornarOProximoRegistroQuandoAProximaPosicaoEhMenorQueAsOpcoes() {
-		List<Opcao> opcoes = listaCom3Opcoes();
-		votacao = new Votacao(opcoes);
-		
-		assertEquals(opcoes.get(1), votacao.proximo());
-	}
-	
-	@Test
-	public void deveRetornarPosicaoAtualAposAvancar() {
-		List<Opcao> opcoes = listaCom3Opcoes();
-		votacao = new Votacao(opcoes);
-		
-		votacao.proximo();
-		assertEquals(opcoes.get(1), votacao.atual());
-	}
-
-	private List<Opcao> listaCom3Opcoes() {
-		Livro l1 = new Livro();
-		l1.setId(1L);
+	public void setUp() {
+		l1 = new Livro();
 		l1.setTitulo("Effective Java");
+		l1.setId(1L);
 		
-		Livro l2 = new Livro();
+		l2 = new Livro();
+		l2.setTitulo("Head First: Java");
 		l2.setId(2L);
-		l2.setTitulo("Harry Potter");
 		
-		Livro l3 = new Livro();
+		l3 = new Livro();
+		l3.setTitulo("Querying MS SQL Server");
 		l3.setId(3L);
-		l3.setTitulo("Head First: Servlets & JSP");
 		
-		Opcao op1 = new Opcao(l1, l2);
-		Opcao op2 = new Opcao(l1, l3);
-		Opcao op3 = new Opcao(l2, l3);
+		v1 = new Voto(Arrays.asList(l1, l2));
+		v1.setId(1L);
+		v2 = new Voto(Arrays.asList(l2, l3));
+		v2.setId(2L);
+		votacao = new Votacao(Arrays.asList(v1, v2));
+	}
+	
+	@Test(expected=RuntimeException.class)
+	public void nao_deve_permitir_alterar_usuario() {
+		Usuario usuario = new Usuario();
+		usuario.setNome("Everton");
+		usuario.setEmail("everton@provedor.com");
+		votacao.setUsuario(usuario);
 		
-		return Arrays.asList(op1, op2, op3);
+		Usuario usuario2 = new Usuario();
+		usuario2.setNome("José");
+		usuario2.setEmail("jose@provedor.com");
+		votacao.setUsuario(usuario2);
+	}
+	
+	@Test
+	public void deve_marcar_terminada_quando_todos_os_votos_foram_realizados() {
+		votacao.getVotos().get(0).votarNo(l1);
+		votacao.getVotos().get(1).votarNo(l2);
+		assertTrue(votacao.estaTerminada());
+	}
+	
+	@Test
+	public void nao_deve_marcar_terminada_quando_houver_votos_nao_realizados() {
+		votacao.getVotos().get(0).votarNo(l1);
+		assertFalse(votacao.estaTerminada());
+	}
+	
+	@Test
+	public void deve_alterar_votacao_atual_apos_votar() {
+		assertEquals(v1, votacao.atual());
+		votacao.atual().votarNo(l1);
+		assertEquals(v2, votacao.atual());
 	}
 
 }
