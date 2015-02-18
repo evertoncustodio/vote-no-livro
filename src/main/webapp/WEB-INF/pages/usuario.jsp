@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div class="usuario">
-	<form action="confirmar" method="post" id="formUsuario">
+	<form action="confirmar.do" method="post" id="formUsuario">
 		<label for="nome">Nome</label>
 		<input type="text" class="form-control" name="nome" maxlength="200" required>
 		<br>

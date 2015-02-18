@@ -22,7 +22,7 @@ public class UsuarioController {
 	private ICriadorDeRanking criadorDeRanking;
 	
 	@Transactional
-	@RequestMapping("/confirmar")
+	@RequestMapping("confirmar.do")
 	public String confirmar(Model model, HttpSession session, Usuario usuario) {
 		Votacao votacao = (Votacao) session.getAttribute("votacao");
 		votacao.setUsuario(usuario);

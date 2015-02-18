@@ -19,7 +19,7 @@ public class VotacaoController {
 	private LivroDAO livroDAO;
 	
 	@Transactional
-	@RequestMapping("/votar")
+	@RequestMapping("votar.do")
 	public String votar(Model model, HttpSession session, Long id) {
 		Livro livroSelecionado = livroDAO.getLivro(id);
 		

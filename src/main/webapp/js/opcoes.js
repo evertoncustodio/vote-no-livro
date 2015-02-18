@@ -2,7 +2,7 @@ function votar(idLivro) {
 	$(".votar").attr("disabled", true);
 	
 	$.ajax({
-		  url: "votar?id=" + idLivro,
+		  url: "votar.do?id=" + idLivro,
 		  success: function(resultado){
 			  $(".opcoes").remove();
 			  $(".panel-body").append(resultado);

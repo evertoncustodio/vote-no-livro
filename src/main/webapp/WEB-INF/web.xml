@@ -28,7 +28,7 @@
 
 	<servlet-mapping>
 		<servlet-name>mvc-dispatcher</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
 	<context-param>
@@ -39,4 +39,8 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<welcome-file-list>
+		<welcome-file>inicial.do</welcome-file>
+	</welcome-file-list>
 </web-app>

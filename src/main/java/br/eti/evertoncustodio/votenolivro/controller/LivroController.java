@@ -14,7 +14,7 @@ public class LivroController {
 	@Autowired
 	private LivroDAO livroDAO;
 	
-	@RequestMapping("/mostrarLivro")
+	@RequestMapping("mostrarLivro.do")
 	public String mostrarLivro(Model model, Long id) {
 		Livro livro = livroDAO.getLivro(id);
 		model.addAttribute("livro", livro);

@@ -1,6 +1,6 @@
 function mostrarLivro(idLivro) {
 	$.ajax({
-		  url: "mostrarLivro?id=" + idLivro,
+		  url: "mostrarLivro.do?id=" + idLivro,
 		  success: function(resultado){
 			  $(".teste").remove();
 			  $(".livro").append(resultado);

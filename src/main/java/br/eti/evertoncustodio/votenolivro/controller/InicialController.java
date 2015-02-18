@@ -16,7 +16,7 @@ public class InicialController {
 	@Autowired
 	private ICriadorDeVotacoes criadorDeVotacoes;
 	
-	@RequestMapping("/")
+	@RequestMapping("inicial.do")
 	public String iniciar(Model model, HttpSession session) {
 		Votacao votacao = criadorDeVotacoes.nova();
 		
