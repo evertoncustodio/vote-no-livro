@@ -1,3 +1,4 @@
-The OpenShift `jbossews` cartridge documentation can be found at:
+Aplicação de testes.
 
-http://openshift.github.io/documentation/oo_cartridge_guide.html#tomcat
+Disponível em:
+http://votenolivro-evertoncustodio.rhcloud.com/
