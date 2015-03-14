@@ -14,7 +14,7 @@ import br.eti.evertoncustodio.votenolivro.model.Votacao;
 @Repository
 class VotacaoDAOImpl implements VotacaoDAO {
 
-	@PersistenceContext
+	@PersistenceContext(unitName="default")
 	private EntityManager manager;
 	
 	public void setManager(EntityManager manager) {

@@ -12,7 +12,7 @@ import br.eti.evertoncustodio.votenolivro.model.Livro;
 @Repository
 class LivroDAOImpl implements LivroDAO {
 
-	@PersistenceContext
+	@PersistenceContext(unitName="default")
 	private EntityManager manager;
 	
 	public void setManager(EntityManager manager) {

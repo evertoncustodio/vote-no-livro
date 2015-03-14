@@ -124,7 +124,7 @@
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<outputDirectory>deployments</outputDirectory>
-					<warName>ROOT</warName>
+					<warName>vote-no-livro</warName>
 				</configuration>
 			</plugin>
 		</plugins>
